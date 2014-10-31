@@ -1,6 +1,6 @@
 {
   "name": "its-thinking",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Spinner for Node Terminal Applications",
   "main": "index.js",
   "scripts": {

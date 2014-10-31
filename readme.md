@@ -3,7 +3,9 @@
 
 Spinner for Node Terminal Applications
 
-Fork of [wemakeweb/node-spinner](https://github.com/wemakeweb/node-spinner).
+Fork of [wemakeweb/node-spinner](https://github.com/wemakeweb/node-spinner),
+a port of [visionmedia/go-spin](https://github.com/visionmedia/go-spin) to node.
+Also, heavily influenced by [helloIAmPau/node-spinner](https://github.com/helloIAmPau/node-spinner)
 
 ## Installation
 
@@ -64,6 +66,9 @@ var trippyPattern = ItsThinking.Patterns[11].split("").map(function(item){return
 var trippySpinner = new ItsThinking(trippyPattern);
 trippySpinner.start("Thinkin' 'bout...");
 ```
+
+###Demonstration GIF
+![](./examples/demo.gif)
 
 # License
 
