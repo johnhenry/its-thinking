@@ -1,4 +1,10 @@
-var Spinner = function(pattern){this.set(pattern, 0);};
+var Spinner = function(pattern){
+	this.set(pattern, 0);
+	if(!process.stdout || !process.stdout.clearLine || !process.stdout.write)
+		this.start = function(){
+			console.warn("WARNING: Its Thinking Spinner\nwill not display in environments where\nstandard output is buffered.")
+		}
+	};
 Spinner.Patterns = [
 '0123456789',
 '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏',
