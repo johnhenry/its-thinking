@@ -1,7 +1,7 @@
 
 # Its Thinking
 
-Spinner for Node Terminal Applications
+Spinner module for Node terminal applications
 
 Fork of [wemakeweb/node-spinner](https://github.com/wemakeweb/node-spinner),
 a port of [visionmedia/go-spin](https://github.com/visionmedia/go-spin) to node.
@@ -20,7 +20,11 @@ var ItsThinking = require("its-thinking");
 ```
 
 ## Examples
-See _examples_ directory for more examples.
+
+![](./examples/demo.gif)
+
+See _examples_ directory for more.
+
 
 ### Basic Usage
 
@@ -32,7 +36,7 @@ basicSpinner.stop();
 ```
 
 ## Interval
-By default, the pattern updates every 250 milliseconds, but that can change with a second argument to start.
+By default, the pattern updates every 250 milliseconds, but that can change by passing a second argument to start.
 
 ```js
 var longSpinner = new ItsThinking();
@@ -47,19 +51,19 @@ var arrowSpinner = new ItsThinking(16);
 arrowSpinner.start("Thinkin' 'bout arrows... ");
 ```
 
-..or provide a custom string
+...or provide a custom string
 ```js
 var vowelSpinner = new ItsThinking("aeiou");
 vowelSpinner.start("Thinkin' 'bout vowels... ");
 ```
 
-...or a custom array
+...or a custom array.
 ```js
 var moreVowelSpinner = new ItsThinking(["a","e","i","o","u","sometimes y"]);
 moreVowelSpinner.start("Thinkin' 'bout other vowels... ");
 ```
 
-Access built-in patterns directly
+Access built-in patterns directly.
 
 ```js
 var trippyPattern = ItsThinking.Patterns[11].split("").map(function(item){return "[~> " + item + " <~]"});
@@ -67,8 +71,6 @@ var trippySpinner = new ItsThinking(trippyPattern);
 trippySpinner.start("Thinkin' 'bout...");
 ```
 
-###Demonstration GIF
-![](./examples/demo.gif)
 
 # License
 
