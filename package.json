@@ -1,26 +1,21 @@
 {
-  "name": "node-spinner",
-  "version": "0.0.4",
-  "description": "Simple Spinner for the Terminal.",
+  "name": "its-thinking",
+  "version": "0.0.1",
+  "description": "Spinner for Node Terminal Applications",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "terminal"
+    "terminal",
+    "spinner",
+    "cli"
   ],
-  "author": "Sebastian Otto <sotto@wemakeweb.de>",
+  "author": "John Henry <john@iamjohnhenry.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://wemakeweb@github.com/wemakeweb/node-spinner.git"
+    "url": "https://github.com/johnhenry/node-spinner.git"
   },
-  "bugs": {
-    "url": "https://github.com/wemakeweb/node-spinner/issues"
-  },
-  "homepage": "https://github.com/wemakeweb/node-spinner",
-  "dependencies": {
-    "util-extend": "~1.0.1"
-  },
-  "devDependencies": {}
-}
+  "homepage": "http://johnhenry.github.io"
+ }

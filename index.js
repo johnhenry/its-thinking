@@ -1,53 +1,50 @@
-var extend = require('util-extend');
-
-// Spinner types.
-extend(Spinner, {
-	Box1    : '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏',
-	Box2    : '⠋⠙⠚⠞⠖⠦⠴⠲⠳⠓',
-	Box3    : '⠄⠆⠇⠋⠙⠸⠰⠠⠰⠸⠙⠋⠇⠆',
-	Box4    : '⠋⠙⠚⠒⠂⠂⠒⠲⠴⠦⠖⠒⠐⠐⠒⠓⠋',
-	Box5    : '⠁⠉⠙⠚⠒⠂⠂⠒⠲⠴⠤⠄⠄⠤⠴⠲⠒⠂⠂⠒⠚⠙⠉⠁',
-	Box6    : '⠈⠉⠋⠓⠒⠐⠐⠒⠖⠦⠤⠠⠠⠤⠦⠖⠒⠐⠐⠒⠓⠋⠉⠈',
-	Box7    : '⠁⠁⠉⠙⠚⠒⠂⠂⠒⠲⠴⠤⠄⠄⠤⠠⠠⠤⠦⠖⠒⠐⠐⠒⠓⠋⠉⠈⠈',
-	Spin1   : '|/-\\',
-	Spin2   : '◴◷◶◵',
-	Spin3   : '◰◳◲◱',
-	Spin4   : '◐◓◑◒',
-	Spin5   : '▉▊▋▌▍▎▏▎▍▌▋▊▉',
-	Spin6   : '▌▄▐▀',
-	Spin7   : '╫╪',
-	Spin8   : '■□▪▫',
-	Spin9   : '←↑→↓'
-});
-
-// Spinner.
-function Spinner(){
-	this.frames = [];
-	this.length = 0;
-	this.pos = 0;
+var Spinner = function(pattern){this.set(pattern, 0);};
+Spinner.Patterns = [
+'0123456789',
+'⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏',
+'⠋⠙⠚⠞⠖⠦⠴⠲⠳⠓',
+'⠄⠆⠇⠋⠙⠸⠰⠠⠰⠸⠙⠋⠇⠆',
+'⠋⠙⠚⠒⠂⠂⠒⠲⠴⠦⠖⠒⠐⠐⠒⠓⠋',
+'⠁⠉⠙⠚⠒⠂⠂⠒⠲⠴⠤⠄⠄⠤⠴⠲⠒⠂⠂⠒⠚⠙⠉⠁',
+'⠈⠉⠋⠓⠒⠐⠐⠒⠖⠦⠤⠠⠠⠤⠦⠖⠒⠐⠐⠒⠓⠋⠉⠈',
+'⠁⠁⠉⠙⠚⠒⠂⠂⠒⠲⠴⠤⠄⠄⠤⠠⠠⠤⠦⠖⠒⠐⠐⠒⠓⠋⠉⠈⠈',
+'|/-\\',
+'◴◷◶◵',
+'◰◳◲◱',
+'◐◓◑◒',
+'▉▊▋▌▍▎▏▎▍▌▋▊▉',
+'▌▄▐▀',
+'╫╪',
+'■□▪▫',
+'←↑→↓'
+];
+Spinner.prototype.set = function(pattern, frame){
+	pattern = pattern || 0;
+	if(typeof pattern === "number") pattern = Spinner.Patterns[pattern];
+	this.pattern = pattern || "";
+	this.length = this.pattern.length;
+	this.frame =  frame?  frame : 0;
+}
+Spinner.prototype.start = function(message, interval){
+	this.stop();
+	this.message = message;
+	interval = interval || 250;
+	var self = this;
+	this.interval = setInterval(function(){
+		process.stdout.clearLine();
+		process.stdout.write(
+			"\r" +
+			(self.message || "") +
+			self.pattern[self.frame++ % self.length]
+		);
+	}, interval);
+}
+Spinner.prototype.stop = function(goto){
+	this.frame = goto === undefined ? this.frame : goto;
+	if(this.interval) clearInterval(this.interval);
 }
 
-// Set frames to the given string which must not use spaces.
-Spinner.prototype.set = function(frames){
-	this.frames = frames;
-	this.length = this.frames.length;
+Spinner.prototype.reset = function(goto){
+	this.frame = goto === undefined ? 0 : goto;
 }
-
-// Next returns the next rune in the sequence.
-Spinner.prototype.next = function(){
-	var r = this.frames[this.pos%this.length]
-	this.pos++
-	return r
-}
-
-// Reset the spinner to its initial frame.
-Spinner.prototype.reset = function(){
-	this.pos = 0
-}
-
-// Returns a spinner initialized with Default frames.
-module.exports = function(){
-	var s = new Spinner();
-	s.set(Spinner.Box1);
-	return s
-}
+module.exports = Spinner;
