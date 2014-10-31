@@ -1,6 +1,6 @@
 {
   "name": "its-thinking",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Spinner for Node Terminal Applications",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnhenry/node-spinner.git"
+    "url": "https://github.com/johnhenry/its-thinking.git"
   },
-  "homepage": "http://johnhenry.github.io"
+  "homepage": "https://github.com/johnhenry/its-thinking"
  }
